@@ -1,92 +1,587 @@
-<!-- Overlay structure -->
-<div id="biginFormOverlay" style="display: none;">
-  <div id="biginFormWrapper">
-    <button id="closeBiginForm">×</button>
-    <div id="biginFormContainer"></div>
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Lualaba — Infraestrutura de TI para Empresas</title>
+  <meta name="description" content="Soluções B2B em Cloud, Datacenter, Redes, Segurança da Informação e Endpoints. Consultoria, projetos e fornecimento de produtos com procedência.">
+  <link rel="canonical" href="https://www.lualaba.com.br/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.lualaba.com.br/">
+  <meta property="og:title" content="Lualaba — Infraestrutura de TI para Empresas">
+  <meta property="og:description" content="Consultoria, projetos e soluções B2B em Cloud, Datacenter, Redes e Segurança da Informação.">
+  <meta property="og:image" content="https://www.lualaba.com.br/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lualaba — Infraestrutura de TI para Empresas">
+  <meta name="twitter:description" content="Consultoria, projetos e soluções B2B em Cloud, Datacenter, Redes e Segurança da Informação.">
+  <meta name="twitter:image" content="https://www.lualaba.com.br/og-image.jpg">
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --grafite:#1C1C1C;
+      --cinza:#4F4F4F;
+      --cinza-claro:#E0E0E0;
+      --azul:#0A74DA;
+      --dourado:#CFAE70;
+      --branco:#FFFFFF;
+      --max-width:1120px;
+      --radius:12px;
+    }
+
+    /* Reset & base */
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--grafite);color:var(--cinza-claro);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* Accessibility skip link */
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:10px;top:10px;width:auto;height:auto;padding:8px 12px;background:#000;color:#fff;border-radius:6px;z-index:9999}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:60;background:rgba(28,28,28,.92);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(224,224,224,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;font-weight:700;letter-spacing:.2px;font-size:18px;gap:12px}
+    .logo-img{height:48px;width:auto;display:block;object-fit:contain}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu-links{display:none;gap:20px}
+    .menu-link{font-size:14px;font-weight:500;transition:.15s;opacity:.9;padding:6px 4px;border-radius:8px}
+    .menu-link:hover{opacity:1;color:var(--azul);background:rgba(10,116,218,.03)}
+    @media(min-width:768px){.menu-links{display:flex}}
+
+    /* Mobile toggle */
+    .mobile-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer;padding:10px;border-radius:8px}
+    @media(min-width:768px){.mobile-toggle{display:none}}
+    .mobile-toggle span{width:22px;height:2px;background:var(--cinza-claro);border-radius:2px;transition:transform .25s,opacity .2s}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:transform .12s ease,box-shadow .12s}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--azul);color:var(--branco)}
+    .btn-primary:hover{filter:brightness(1.06)}
+    .btn-ghost{background:transparent;border:1px solid rgba(224,224,224,.08);color:var(--cinza-claro)}
+    .btn-ghost:hover{background:rgba(224,224,224,.02)}
+
+    /* Hero */
+    .hero{position:relative;padding:90px 0 56px;border-bottom:1px solid rgba(224,224,224,.04);overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:-35% -10% auto -10%;height:480px;background:radial-gradient(700px 260px at 18% 32%, rgba(10,116,218,.18), transparent 60%),radial-gradient(520px 220px at 82% 18%, rgba(207,174,112,.12), transparent 60%);pointer-events:none;filter:blur(36px)}
+    .hero-content{position:relative;z-index:1}
+    .badge{display:inline-flex;gap:8px;align-items:center;font-size:13px;color:#d9d9d9;background:rgba(224,224,224,.04);border:1px solid rgba(224,224,224,.08);padding:8px 12px;border-radius:999px;margin-bottom:18px}
+    .badge-dot{width:8px;height:8px;background:var(--dourado);border-radius:50%}
+    .hero h1{font-size:clamp(30px,5vw,48px);line-height:1.12;margin:0 0 14px;color:var(--branco);font-weight:700}
+    .hero p{max-width:720px;margin:0 0 22px;color:#d9d9d9;font-size:17px}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+    .section-head h2{margin:0;font-size:clamp(22px,3.4vw,30px);color:var(--branco);font-weight:700}
+    .section-subtitle{color:#b0b0b0;font-size:15px;max-width:640px;margin-top:6px}
+
+    /* Grid */
+    .grid{display:grid;gap:16px}
+    @media(min-width:640px){.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+    /* Card */
+    .card{background:rgba(224,224,224,.03);border:1px solid rgba(224,224,224,.06);border-radius:var(--radius);padding:20px;transition:transform .18s ease,box-shadow .18s;overflow:hidden}
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.35);border-color:rgba(224,224,224,.12)}
+    .card-icon{width:48px;height:48px;background:rgba(10,116,218,.08);border:1px solid rgba(10,116,218,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:22px}
+    .card h3{margin:0 0 8px;color:var(--branco);font-size:18px;font-weight:600}
+    .card p{margin:0 0 12px;color:#b8b8b8;font-size:15px;line-height:1.6}
+
+    /* Feature */
+    .feature-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
+    .feature-list li{color:#c7c7c7;font-size:14px;display:flex;align-items:center;gap:8px}
+    .feature-list li::before{content:"✓";color:var(--azul);font-weight:700;font-size:14px}
+
+    /* CTA card */
+    .cta-card{border-radius:var(--radius);padding:40px;text-align:center;background:linear-gradient(135deg,rgba(10,116,218,.04),rgba(207,174,112,.03));border:1px solid rgba(224,224,224,.08)}
+    .cta-card h2{margin:0 0 12px;font-size:26px;color:var(--branco)}
+    .cta-card p{color:#c0c0c0;max-width:740px;margin:0 auto 18px}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(224,224,224,.06);padding:40px 0;margin-top:48px}
+    .footer-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .footer-section h4{color:var(--branco);font-size:15px;margin:0 0 12px;font-weight:600}
+    .footer-section a{color:#b0b0b0;font-size:14px}
+    .footer-bottom{margin-top:24px;padding-top:20px;border-top:1px solid rgba(224,224,224,.04);text-align:center;color:#808080;font-size:14px}
+
+    /* WhatsApp float */
+    .whatsapp-float{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(37,211,102,.2);cursor:pointer;z-index:60}
+    .whatsapp-float svg{width:28px;height:28px;fill:#fff}
+
+    /* Zoho modal overlay (hidden by default) */
+    .zoho-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
+    .zoho-overlay.open{display:flex}
+    .zoho-modal{background:#fff;border-radius:14px;width:100%;max-width:720px;max-height:90vh;overflow:auto;position:relative;padding:18px 18px 28px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+    .zoho-close{position:absolute;top:10px;right:12px;background:transparent;border:none;font-size:26px;line-height:1;color:#333;cursor:pointer}
+    .zoho-modal .title{font-size:18px;color:#222;margin-bottom:8px;font-weight:700}
+    .zoho-modal p.lead{color:#555;margin:0 0 12px;font-size:14px}
+
+    /* Mobile adjustments */
+    @media(max-width:420px){
+      .hero{padding:72px 0 40px}
+      .logo-img{height:42px}
+      .card{padding:16px}
+      .cta-card{padding:28px}
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="nav" role="navigation" aria-label="Menu principal">
+        <a href="/" class="logo" aria-label="Lualaba — página inicial">
+          <img src="Lualaba_Logo_Gray_Tag.png" alt="Lualaba — Logo" class="logo-img" loading="lazy">
+        </a>
+
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="menu-links" role="menubar" aria-label="Links principais">
+            <a href="#solucoes" class="menu-link" role="menuitem">Soluções</a>
+            <a href="#diferenciais" class="menu-link" role="menuitem">Diferenciais</a>
+            <a href="#sobre" class="menu-link" role="menuitem">Sobre</a>
+          </div>
+
+          <a href="#contato" class="btn btn-primary" data-open-form>Fale Conosco</a>
+
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-content">
+        <div class="badge" aria-hidden="true">
+          <span class="badge-dot"></span>
+          <span>Soluções empresariais de TI</span>
+        </div>
+
+        <h1 id="hero-title">Infraestrutura de TI que impulsiona o seu negócio</h1>
+        <p>Soluções B2B completas em Cloud, Datacenter, Redes, Segurança da Informação e Endpoints. Consultoria especializada, projetos sob medida e fornecimento de produtos com procedência garantida.</p>
+
+        <div class="hero-cta">
+          <button class="btn btn-primary" data-open-form>Solicitar Consultoria</button>
+          <a href="#solucoes" class="btn btn-ghost">Conhecer Soluções</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soluções -->
+    <section id="solucoes" aria-labelledby="solucoes-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="solucoes-title">Nossas Soluções</h2>
+            <p class="section-subtitle">Infraestrutura completa para empresas que buscam excelência tecnológica e continuidade operacional.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card" aria-labelledby="cloud-title">
+            <div class="card-icon" aria-hidden="true">☁️</div>
+            <h3 id="cloud-title">Cloud Computing</h3>
+            <p>Migração e gestão de ambientes em nuvem com foco em disponibilidade, escalabilidade e segurança.</p>
+            <ul class="feature-list" aria-hidden="true">
+              <li>AWS, Azure e Google Cloud</li>
+              <li>Migração segura e automatizada</li>
+              <li>Arquitetura resiliente</li>
+            </ul>
+          </article>
+
+          <article class="card" aria-labelledby="dc-title">
+            <div class="card-icon" aria-hidden="true">🖥️</div>
+            <h3 id="dc-title">Datacenter</h3>
+            <p>Infraestrutura redundante e gestão de storage, virtualização e estratégias de backup e recuperação.</p>
+            <ul class="feature-list" aria-hidden="true">
+              <li>Storage enterprise</li>
+              <li>Virtualização VMware/Hyper-V</li>
+              <li>Disaster recovery</li>
+            </ul>
+          </article>
+
+          <article class="card" aria-labelledby="sec-title">
+            <div class="card-icon" aria-hidden="true">🔒</div>
+            <h3 id="sec-title">Segurança da Informação</h3>
+            <p>Camadas de proteção com firewall, EDR, SIEM e práticas de governança e compliance.</p>
+            <ul class="feature-list" aria-hidden="true">
+              <li>Firewall next-gen</li>
+              <li>SIEM e SOC</li>
+              <li>Testes de penetração</li>
+            </ul>
+          </article>
+
+          <article class="card" aria-labelledby="net-title">
+            <div class="card-icon" aria-hidden="true">🌐</div>
+            <h3 id="net-title">Redes Corporativas</h3>
+            <p>Projeto, implementação e operação de redes com foco em performance e observabilidade.</p>
+            <ul class="feature-list" aria-hidden="true">
+              <li>Cabeamento estruturado</li>
+              <li>SD-WAN e SDN</li>
+              <li>Monitoramento 24/7</li>
+            </ul>
+          </article>
+
+          <article class="card" aria-labelledby="end-title">
+            <div class="card-icon" aria-hidden="true">💻</div>
+            <h3 id="end-title">Endpoints</h3>
+            <p>Gestão centralizada de dispositivos corporativos com políticas de segurança e inventário.</p>
+            <ul class="feature-list" aria-hidden="true">
+              <li>MDM/EMM</li>
+              <li>Suporte e manutenção</li>
+              <li>Asset management</li>
+            </ul>
+          </article>
+
+          <article class="card" aria-labelledby="cons-title">
+            <div class="card-icon" aria-hidden="true">📊</div>
+            <h3 id="cons-title">Consultoria e Projetos</h3>
+            <p>Diagnóstico técnico, planejamento estratégico e execução de projetos alinhados ao negócio.</p>
+            <ul class="feature-list" aria-hidden="true">
+              <li>Assessment técnico</li>
+              <li>Roadmap de TI</li>
+              <li>Gestão de projetos (PMP / Agile)</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais" aria-labelledby="dif-title" style="background:rgba(224,224,224,.02)">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="dif-title">Por que escolher a Lualaba?</h2>
+            <p class="section-subtitle">Compromisso com qualidade, procedência e entregas mensuráveis.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Produtos com Procedência</h3>
+            <p>Fornecimento de equipamentos e licenças com origem comprovada, garantia e suporte do fabricante.</p>
+          </div>
+
+          <div class="card">
+            <h3>Foco B2B</h3>
+            <p>Atendimento corporativo com SLAs, contratos e processos ajustados às demandas empresariais.</p>
+          </div>
+
+          <div class="card">
+            <h3>Suporte Técnico Avançado</h3>
+            <p>Equipe de engenheiros certificados para suporte reativo e proativo, disponível conforme contrato.</p>
+          </div>
+
+          <div class="card">
+            <h3>Gestão de Projetos</h3>
+            <p>Metodologias ágeis e acompanhamento por indicadores para garantir entrega e governança.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-card">
+          <h2 id="cta-title">Pronto para modernizar sua infraestrutura?</h2>
+          <p>Agende uma conversa com nossos especialistas e descubra como otimizar custos, segurança e disponibilidade.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+            <button class="btn btn-primary" data-open-form>Agendar Consultoria Gratuita</button>
+            <a href="#solucoes" class="btn btn-ghost">Ver Nossas Soluções</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre (placeholder) -->
+    <section id="sobre" aria-labelledby="sobre-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="sobre-title">Sobre a Lualaba</h2>
+            <p class="section-subtitle">Somos especialistas em infraestrutura de TI, com foco em resultados e segurança.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Nossa Missão</h3>
+            <p>Fornecer soluções de infraestrutura que permitam às empresas operar com eficiência, segurança e previsibilidade.</p>
+          </div>
+          <div class="card">
+            <h3>Atuação</h3>
+            <p>Atendemos empresas de diversos portes com soluções modulares e consultoria técnica especializada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Lualaba</h4>
+          <p style="color:#808080;font-size:14px;line-height:1.6">Infraestrutura de TI para empresas que buscam excelência tecnológica e resultados mensuráveis.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Soluções</h4>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li><a href="#solucoes">Cloud Computing</a></li>
+            <li><a href="#solucoes">Datacenter</a></li>
+            <li><a href="#solucoes">Segurança</a></li>
+            <li><a href="#solucoes">Redes</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Recursos</h4>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contato" data-open-form>Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <ul style="list-style:none;padding:0;margin:0">
+            <li><a href="mailto:contato@lualaba.com.br">contato@lualaba.com.br</a></li>
+            <li><a href="tel:+551531911169">+55 15 3191-1169</a></li>
+            <li style="color:#808080;font-size:14px">Sorocaba, São Paulo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> Lualaba. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/551531911169?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Lualaba." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M16 0C7.164 0 0 7.163 0 16c0 2.828.738 5.482 2.03 7.78L.697 29.417a.996.996 0 001.234 1.234l5.637-1.333A15.932 15.932 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0z"/>
+      <path d="M23.456 18.847c-.324-.162-1.92-.947-2.218-1.056-.296-.108-.512-.162-.728.162-.216.325-.837 1.056-1.026 1.272-.19.217-.378.244-.702.081-.324-.162-1.367-.504-2.604-1.607-.962-.858-1.612-1.918-1.8-2.242-.19-.325-.02-.5.142-.662.146-.145.324-.378.486-.567.162-.19.216-.325.324-.541.108-.217.054-.406-.027-.568-.081-.162-.728-1.755-.998-2.404-.263-.631-.53-.545-.728-.555-.19-.01-.405-.012-.621-.012s-.567.081-.864.406c-.297.324-1.134 1.108-1.134 2.701s1.161 3.133 1.323 3.35c.162.216 2.286 3.492 5.539 4.897.774.335 1.378.535 1.849.685.777.247 1.485.212 2.043.128.623-.093 1.92-.785 2.19-1.543.27-.757.27-1.406.19-1.543-.082-.136-.298-.217-.623-.379z"/>
+    </svg>
+  </a>
+
+  <!-- Zoho Bigin Modal (hidden) -->
+  <div id="zohoOverlay" class="zoho-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="zoho-modal" role="document" aria-labelledby="zohoTitle">
+      <button class="zoho-close" id="zohoCloseBtn" aria-label="Fechar formulário">×</button>
+      <h3 id="zohoTitle" class="title">Contato</h3>
+      <p class="lead">Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
+      <div id="zohoFormContainer" aria-live="polite"></div>
+    </div>
   </div>
-</div>
 
-<!-- Open button example -->
-<button onclick="openBiginForm()">Abrir Formulário</button>
+  <!-- Zoho script will be injected dynamically when user opens the modal -->
+  <!-- DO NOT include the Zoho script statically elsewhere on the page -->
 
-<script>
-  /* ---------- Styles (can move to your CSS file) ---------- */
-  const style = document.createElement('style');
-  style.textContent = `
-    #biginFormOverlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+  <script>
+    // Current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    #biginFormWrapper {
-      position: relative;
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      width: 90%;
-      max-width: 650px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-      animation: fadeIn 0.3s ease;
-    }
+    // Mobile menu toggle
+    (function(){
+      const toggle = document.getElementById('mobileToggle');
+      const menuLinks = document.querySelector('.menu-links');
+      let open = false;
+      toggle.addEventListener('click', () => {
+        open = !open;
+        if (open) {
+          menuLinks.style.display = 'flex';
+          toggle.setAttribute('aria-expanded','true');
+        } else {
+          menuLinks.style.display = '';
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+      // Close menu on outside click (mobile)
+      document.addEventListener('click', (e) => {
+        if (open && !e.target.closest('.nav')) {
+          open = false;
+          menuLinks.style.display = '';
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
 
-    #closeBiginForm {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      background: transparent;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #333;
-    }
+    // Zoho Modal logic (injects script only when opened)
+    (function(){
+      const OPEN_SELECTOR = '[data-open-form]'; // elements that open the form
+      const zohoOverlay = document.getElementById('zohoOverlay');
+      const zohoCloseBtn = document.getElementById('zohoCloseBtn');
+      const zohoFormContainer = document.getElementById('zohoFormContainer');
+      const ZOHO_SCRIPT_ID = 'formScript7058234000000577608';
+      const ZOHO_SRC = 'https://us.bigin.online/lualabaltda/forms/newform?script=$sYG';
 
-    #closeBiginForm:hover {
-      color: #000;
-      transform: scale(1.2);
-    }
+      // Open function: shows overlay and injects script on first open
+      function openZohoModal() {
+        if (!zohoOverlay) return;
+        // show overlay
+        zohoOverlay.classList.add('open');
+        zohoOverlay.setAttribute('aria-hidden','false');
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  `;
-  document.head.appendChild(style);
+        // If script not yet injected, inject it
+        if (!document.getElementById(ZOHO_SCRIPT_ID)) {
+          // Ensure container is empty
+          zohoFormContainer.innerHTML = '';
 
-  /* ---------- Functions ---------- */
+          const s = document.createElement('script');
+          s.id = ZOHO_SCRIPT_ID;
+          s.src = ZOHO_SRC;
+          s.async = true;
+          // Append script to container so Zoho injects the form inside this div (Zoho may create its own iframe)
+          zohoFormContainer.appendChild(s);
 
-  // Opens the Zoho Bigin form inside the modal
-  function openBiginForm() {
-    const overlay = document.getElementById('biginFormOverlay');
-    const container = document.getElementById('biginFormContainer');
-    overlay.style.display = 'flex';
+          // In some embed variations Zoho appends outside — observe and move if necessary
+          // We'll use a MutationObserver to detect if Zoho creates its own popup outside and move it into our container.
+          const observer = new MutationObserver((mutations, obs) => {
+            // try to find iframe or form created by Zoho (heuristic)
+            const possible = document.querySelector('iframe[src*="bigin.online"], #biginWebFormDiv, .ZohoFormPopup, iframe[src*="forms.zohopublic.com"]');
+            if (possible) {
+              // If found outside our container, attempt to move it inside
+              if (!zohoFormContainer.contains(possible)) {
+                try {
+                  // wrap and move the element into our container
+                  zohoFormContainer.appendChild(possible);
+                } catch (err) {
+                  // ignore if we cannot move it (cross-origin iframe cannot be appended), but overlay will still be visible
+                }
+              }
+              obs.disconnect();
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+        } else {
+          // if script exists but form is hidden, try to make it visible
+          const formEl = zohoFormContainer.querySelector('#biginWebFormDiv, iframe[src*="bigin.online"], iframe[src*="forms.zohopublic.com"], .ZohoFormPopup');
+          if (formEl) {
+            formEl.style.display = '';
+            formEl.style.opacity = '1';
+          }
+        }
 
-    // Inject Zoho script dynamically
-    container.innerHTML = "";
-    const script = document.createElement('script');
-    script.id = 'formScript7058234000000577608';
-    script.src = 'https://us.bigin.online/lualabaltda/forms/newform?script=$sYG';
-    container.appendChild(script);
-  }
+        // trap focus inside modal (basic)
+        trapFocus(zohoOverlay);
+      }
 
-  // Closes and cleans the form
-  function closeBiginForm() {
-    const overlay = document.getElementById('biginFormOverlay');
-    const container = document.getElementById('biginFormContainer');
-    overlay.style.display = 'none';
-    container.innerHTML = ''; // removes form from DOM
-  }
+      // Close function: hides overlay and optionally keeps script for reuse
+      function closeZohoModal() {
+        if (!zohoOverlay) return;
+        zohoOverlay.classList.remove('open');
+        zohoOverlay.setAttribute('aria-hidden','true');
 
-  // Add event listener to close button
-  document.getElementById('closeBiginForm').addEventListener('click', closeBiginForm);
+        // Try to hide the injected form if present (do not remove script element to avoid reloading on reopen)
+        const formEl = zohoFormContainer.querySelector('#biginWebFormDiv, iframe[src*="bigin.online"], iframe[src*="forms.zohopublic.com"], .ZohoFormPopup');
+        if (formEl) {
+          try {
+            formEl.style.display = 'none';
+          } catch (err) {
+            // ignore
+          }
+        }
+        // remove focus trap
+        releaseFocus();
+      }
 
-  // Optional: allow closing with "ESC" key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === "Escape") closeBiginForm();
-  });
-</script>
+      // Attach open handlers to all elements with data-open-form
+      document.querySelectorAll(OPEN_SELECTOR).forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          openZohoModal();
+        });
+      });
+
+      // Close handlers
+      zohoCloseBtn.addEventListener('click', closeZohoModal);
+      // clicking overlay but outside modal closes
+      zohoOverlay.addEventListener('click', (e) => {
+        if (e.target === zohoOverlay) closeZohoModal();
+      });
+
+      // ESC key closes
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          // only close if overlay is open
+          if (zohoOverlay.classList.contains('open')) closeZohoModal();
+        }
+      });
+
+      /* Focus trap implementation (basic) */
+      let lastFocused = null;
+      function trapFocus(modal) {
+        lastFocused = document.activeElement;
+        const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (first) first.focus();
+
+        function handleTab(e) {
+          if (e.key !== 'Tab') return;
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+        document.addEventListener('keydown', handleTab);
+        // store for release
+        modal._releaseFocus = () => document.removeEventListener('keydown', handleTab);
+      }
+
+      function releaseFocus() {
+        if (zohoOverlay && zohoOverlay._releaseFocus) {
+          zohoOverlay._releaseFocus();
+          zohoOverlay._releaseFocus = null;
+        }
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+    })();
+
+    // Small enhancement: external links open in new tab safely
+    (function(){
+      document.querySelectorAll('a[target="_blank"]').forEach(a => {
+        a.setAttribute('rel', 'noopener noreferrer');
+      });
+    })();
+  </script>
+
+  <noscript>
+    <style>
+      .hero p,.section-subtitle{opacity:.95}
+    </style>
+    <div style="background:#111;color:#fff;padding:12px;text-align:center">Este site funciona melhor com JavaScript ativado. Para abrir o formulário de contato, ative o JavaScript.</div>
+  </noscript>
+</body>
+</html>
