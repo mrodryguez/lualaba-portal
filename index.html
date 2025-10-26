@@ -1,95 +1,198 @@
-import type { Config } from "tailwindcss";
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Lualaba — Infraestrutura de TI para Empresas</title>
+  <meta name="description" content="Soluções B2B em Cloud, Datacenter, Redes, Segurança da Informação e Endpoints. Consultoria, projetos e fornecimento de produtos com procedência.">
+  <link rel="canonical" href="https://www.lualaba.com.br/" />
 
-export default {
-  darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
-  prefix: "",
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        grafite: "hsl(var(--grafite))",
-        cinza: "hsl(var(--cinza))",
-        "cinza-claro": "hsl(var(--cinza-claro))",
-        azul: "hsl(var(--azul))",
-        dourado: "hsl(var(--dourado))",
-        branco: "hsl(var(--branco))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      backgroundImage: {
-        'gradient-hero': 'var(--gradient-hero)',
-        'gradient-card': 'var(--gradient-card)',
-      },
-      boxShadow: {
-        'elegant': 'var(--shadow-elegant)',
-        'glow': 'var(--shadow-glow)',
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.lualaba.com.br/">
+  <meta property="og:title" content="Lualaba — Infraestrutura de TI para Empresas">
+  <meta property="og:description" content="Soluções B2B em Cloud, Datacenter, Redes e Segurança da Informação.">
+  <meta property="og:image" content="https://www.lualaba.com.br/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lualaba — Infraestrutura de TI para Empresas">
+  <meta name="twitter:description" content="Consultoria, projetos e soluções B2B de tecnologia.">
+  <meta name="twitter:image" content="https://www.lualaba.com.br/og-image.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    :root {
+      --grafite:#1C1C1C;
+      --cinza:#4F4F4F;
+      --cinza-claro:#E0E0E0;
+      --azul:#0A74DA;
+      --dourado:#CFAE70;
+      --branco:#FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--grafite);
+      color: var(--cinza-claro);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(28,28,28,.95);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid rgba(224,224,224,.08);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+    .logo { display: flex; align-items: center; font-weight: 700; font-size: 20px; gap: 10px; }
+    .logo-img { height: 54px; width: auto; display: block; }
+
+    .menu { display: flex; gap: 24px; align-items: center; }
+    .menu-links { display: none; gap: 24px; }
+    @media (min-width: 768px) { .menu-links { display: flex; } }
+
+    .menu-link { font-size: 14px; font-weight: 500; transition: .2s; opacity: .85; }
+    .menu-link:hover { opacity: 1; color: var(--azul); }
+
+    /* Mobile menu */
+    .mobile-toggle { display: flex; flex-direction: column; gap: 4px; cursor: pointer; padding: 8px; }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+    .mobile-toggle span { width: 24px; height: 2px; background: var(--cinza-claro); border-radius: 2px; transition: .3s; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; border: 1px solid transparent; cursor: pointer; transition: .2s; }
+    .btn-primary { background: var(--azul); color: var(--branco); }
+    .btn-primary:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-ghost { border-color: rgba(224,224,224,.18); }
+    .btn-ghost:hover { border-color: rgba(224,224,224,.35); background: rgba(224,224,224,.04); }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 100px 0 60px;
+      border-bottom: 1px solid rgba(224,224,224,.06);
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: -40% -20% auto -20%;
+      height: 520px;
+      background: radial-gradient(800px 300px at 20% 30%, rgba(12,87,180,.25), transparent 60%), radial-gradient(600px 260px at 80% 20%, rgba(207,174,112,.18), transparent 60%);
+      pointer-events: none; filter: blur(40px);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: clamp(32px,5vw,48px);
+      line-height: 1.15;
+      margin: 0 0 16px;
+      color: var(--branco);
+      font-weight: 700;
+    }
+    .hero p { max-width: 720px; margin: 0 0 28px; color: #d9d9d9; font-size: 18px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .badge {
+      display: inline-flex; gap: 8px; align-items: center;
+      font-size: 13px; color: #d9d9d9;
+      background: rgba(224,224,224,.06);
+      border: 1px solid rgba(224,224,224,.12);
+      padding: 7px 12px; border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .badge-dot { width: 8px; height: 8px; background: var(--dourado); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% {opacity:1} 50% {opacity:.5} }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(224,224,224,.08);
+      padding: 48px 0; margin-top: 64px;
+    }
+
+    /* WhatsApp Float Button */
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 60px; height: 60px; background: #25D366;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(37,211,102,.4);
+      transition: .3s ease; z-index: 100;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,.6); }
+    .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <div class="nav">
+        <a href="/" class="logo" aria-label="Página inicial da Lualaba">
+          <img src="Lualaba_Logo_Gray_Tag.png" alt="Logo da Lualaba" class="logo-img" loading="lazy">
+        </a>
+        <div class="menu">
+          <div class="menu-links">
+            <a href="#solucoes" class="menu-link">Soluções</a>
+            <a href="#servicos" class="menu-link">Serviços</a>
+            <a href="#sobre" class="menu-link">Sobre</a>
+          </div>
+          <a href="#contato" class="btn btn-primary">Fale Conosco</a>
+          <div class="mobile-toggle" id="menuToggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span>Soluções empresariais de TI</span>
+        </div>
+        <h1>Infraestrutura de TI que<br>impulsiona o seu negócio</h1>
+        <p>Soluções B2B completas em Cloud, Datacenter, Redes e Segurança da Informação.</p>
+        <div class="hero-cta">
+          <a href="#contato" class="btn btn-primary">Solicitar Consultoria</a>
+          <a href="#solucoes" class="btn btn-ghost">Conhecer Soluções</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/551531911169?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Lualaba." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 0C7.164 0 0 7.163 0 16c0 2.828.738 5.482 2.03 7.78L.697 29.417a.996.996 0 001.234 1.234l5.637-1.333A15.932 15.932 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0z"/></svg>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="text-align:center;color:#808080;font-size:14px">&copy; 2025 Lualaba. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Zoho Form -->
+  <script id="formScript7058234000000577608" src="https://us.bigin.online/lualabaltda/forms/newform?script=$sYG" async></script>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menuLinks = document.querySelector('.menu-links');
+    toggle.addEventListener('click', () => {
+      menuLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
