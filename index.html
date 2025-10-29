@@ -1,198 +1,62 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="index, follow" />
-  <title>Lualaba — Infraestrutura de TI para Empresas</title>
-  <meta name="description" content="Soluções B2B em Cloud, Datacenter, Redes, Segurança da Informação e Endpoints. Consultoria, projetos e fornecimento de produtos com procedência.">
-  <link rel="canonical" href="https://www.lualaba.com.br/" />
-
-  <!-- Open Graph / Social Media -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.lualaba.com.br/">
-  <meta property="og:title" content="Lualaba — Infraestrutura de TI para Empresas">
-  <meta property="og:description" content="Soluções B2B em Cloud, Datacenter, Redes e Segurança da Informação.">
-  <meta property="og:image" content="https://www.lualaba.com.br/og-image.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lualaba — Infraestrutura de TI para Empresas">
-  <meta name="twitter:description" content="Consultoria, projetos e soluções B2B de tecnologia.">
-  <meta name="twitter:image" content="https://www.lualaba.com.br/og-image.jpg">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <style>
-    :root {
-      --grafite:#1C1C1C;
-      --cinza:#4F4F4F;
-      --cinza-claro:#E0E0E0;
-      --azul:#0A74DA;
-      --dourado:#CFAE70;
-      --branco:#FFFFFF;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--grafite);
-      color: var(--cinza-claro);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-
-    /* Header */
-    header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(28,28,28,.95);
-      backdrop-filter: saturate(140%) blur(8px);
-      border-bottom: 1px solid rgba(224,224,224,.08);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
-    .logo { display: flex; align-items: center; font-weight: 700; font-size: 20px; gap: 10px; }
-    .logo-img { height: 54px; width: auto; display: block; }
-
-    .menu { display: flex; gap: 24px; align-items: center; }
-    .menu-links { display: none; gap: 24px; }
-    @media (min-width: 768px) { .menu-links { display: flex; } }
-
-    .menu-link { font-size: 14px; font-weight: 500; transition: .2s; opacity: .85; }
-    .menu-link:hover { opacity: 1; color: var(--azul); }
-
-    /* Mobile menu */
-    .mobile-toggle { display: flex; flex-direction: column; gap: 4px; cursor: pointer; padding: 8px; }
-    @media (min-width: 768px) { .mobile-toggle { display: none; } }
-    .mobile-toggle span { width: 24px; height: 2px; background: var(--cinza-claro); border-radius: 2px; transition: .3s; }
-
-    /* Buttons */
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; border: 1px solid transparent; cursor: pointer; transition: .2s; }
-    .btn-primary { background: var(--azul); color: var(--branco); }
-    .btn-primary:hover { filter: brightness(1.15); transform: translateY(-1px); }
-    .btn-ghost { border-color: rgba(224,224,224,.18); }
-    .btn-ghost:hover { border-color: rgba(224,224,224,.35); background: rgba(224,224,224,.04); }
-
-    /* Hero */
-    .hero {
-      position: relative; overflow: hidden;
-      padding: 100px 0 60px;
-      border-bottom: 1px solid rgba(224,224,224,.06);
-    }
-    .hero::before {
-      content: "";
-      position: absolute; inset: -40% -20% auto -20%;
-      height: 520px;
-      background: radial-gradient(800px 300px at 20% 30%, rgba(12,87,180,.25), transparent 60%), radial-gradient(600px 260px at 80% 20%, rgba(207,174,112,.18), transparent 60%);
-      pointer-events: none; filter: blur(40px);
-    }
-    .hero-content { position: relative; z-index: 1; }
-    .hero h1 {
-      font-size: clamp(32px,5vw,48px);
-      line-height: 1.15;
-      margin: 0 0 16px;
-      color: var(--branco);
-      font-weight: 700;
-    }
-    .hero p { max-width: 720px; margin: 0 0 28px; color: #d9d9d9; font-size: 18px; }
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    .badge {
-      display: inline-flex; gap: 8px; align-items: center;
-      font-size: 13px; color: #d9d9d9;
-      background: rgba(224,224,224,.06);
-      border: 1px solid rgba(224,224,224,.12);
-      padding: 7px 12px; border-radius: 999px;
-      margin-bottom: 16px;
-    }
-    .badge-dot { width: 8px; height: 8px; background: var(--dourado); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% {opacity:1} 50% {opacity:.5} }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(224,224,224,.08);
-      padding: 48px 0; margin-top: 64px;
-    }
-
-    /* WhatsApp Float Button */
-    .whatsapp-float {
-      position: fixed; bottom: 24px; right: 24px;
-      width: 60px; height: 60px; background: #25D366;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 12px rgba(37,211,102,.4);
-      transition: .3s ease; z-index: 100;
-    }
-    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,.6); }
-    .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
-  </style>
-</head>
-
-<body>
-  <header>
-    <nav class="container">
-      <div class="nav">
-        <a href="/" class="logo" aria-label="Página inicial da Lualaba">
-          <img src="Lualaba_Logo_Gray_Tag.png" alt="Logo da Lualaba" class="logo-img" loading="lazy">
-        </a>
-        <div class="menu">
-          <div class="menu-links">
-            <a href="#solucoes" class="menu-link">Soluções</a>
-            <a href="#servicos" class="menu-link">Serviços</a>
-            <a href="#sobre" class="menu-link">Sobre</a>
-          </div>
-          <a href="#contato" class="btn btn-primary">Fale Conosco</a>
-          <div class="mobile-toggle" id="menuToggle" aria-label="Abrir menu">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-content">
-        <div class="badge">
-          <span class="badge-dot"></span>
-          <span>Soluções empresariais de TI</span>
-        </div>
-        <h1>Infraestrutura de TI que<br>impulsiona o seu negócio</h1>
-        <p>Soluções B2B completas em Cloud, Datacenter, Redes e Segurança da Informação.</p>
-        <div class="hero-cta">
-          <a href="#contato" class="btn btn-primary">Solicitar Consultoria</a>
-          <a href="#solucoes" class="btn btn-ghost">Conhecer Soluções</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- WhatsApp -->
-  <a href="https://wa.me/551531911169?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Lualaba." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 0C7.164 0 0 7.163 0 16c0 2.828.738 5.482 2.03 7.78L.697 29.417a.996.996 0 001.234 1.234l5.637-1.333A15.932 15.932 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0z"/></svg>
-  </a>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p style="text-align:center;color:#808080;font-size:14px">&copy; 2025 Lualaba. Todos os direitos reservados.</p>
-    </div>
-  </footer>
-
-  <!-- Zoho Form -->
-  <script id="formScript7058234000000577608" src="https://us.bigin.online/lualabaltda/forms/newform?script=$sYG" async></script>
-
-  <!-- Mobile Menu Script -->
-  <script>
-    const toggle = document.getElementById('menuToggle');
-    const menuLinks = document.querySelector('.menu-links');
-    toggle.addEventListener('click', () => {
-      menuLinks.classList.toggle('active');
-    });
-  </script>
-</body>
-</html>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lualaba — Infraestrutura de TI para Empresas</title>
+  <meta name="description" content="Soluções B2B em Cloud, Datacenter, Redes, Segurança da Informação e Endpoints. Consultoria, projetos e fornecimento de produtos com procedência.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --grafite:#1C1C1C;
+      --cinza:#4F4F4F;
+      --cinza-claro:#E0E0E0;
+      --azul:#0A74DA;
+      --dourado:#CFAE70;
+      --branco:#FFFFFF;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--grafite);color:var(--cinza-claro);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(28,28,28,.9);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(224,224,224,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;font-weight:700;letter-spacing:.2px}
+    /* NOVO: Estilo para a imagem do logo */
+    .logo-img{height:34px;width:auto;} 
+    .menu{display:flex;gap:22px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:10px;font-weight:600;border:1px solid transparent;transition:.2s ease}
+    .btn-primary{background:var(--azul);color:var(--branco)}
+    .btn-primary:hover{filter:brightness(1.1)}
+    .btn-ghost{border-color:rgba(224,224,224,.18)}
+    .btn-ghost:hover{border-color:rgba(224,224,224,.35)}
+    /* Hero */
+    .hero{position:relative;overflow:hidden;padding:80px 0 48px;border-bottom:1px solid rgba(224,224,224,.06)}
+    .hero::before{
+      content:"";position:absolute;inset:-40% -20% auto -20%;
+      height:520px;background:
+        radial-gradient(800px 300px at 20% 30%, rgba(12,87,180,.25), transparent 60%),
+        radial-gradient(600px 260px at 80% 20%, rgba(207,174,112,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .hero h1{font-size:40px;line-height:1.15;margin:0 0 14px;color:var(--branco)}
+    .hero p{max-width:820px;margin:0 0 22px;color:#d9d9d9}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:#d9d9d9;background:rgba(224,224,224,.06);border:1px solid rgba(224,224,224,.12);padding:6px 10px;border-radius:999px}
+    /* Sections */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
+    .section-head h2{margin:0;font-size:28px;color:var(--branco)}
+    .grid{display:grid;gap:14px}
+    @media(min-width:720px){.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .card{
+      background:rgba(224,224,224,.04);border:1px solid rgba(224,224,224,.08);
+      border-radius:16px;padding:18px;transition:.2s ease
+    }
+    .card:hover{border-color:rgba(224,224,224,.18);transform:translateY(-2px)}
+    .card h3{margin:0 0 6px;color:var(--branco);font-size:18px}
+    .card p{margin:0 0 12px;color:#d0d0
